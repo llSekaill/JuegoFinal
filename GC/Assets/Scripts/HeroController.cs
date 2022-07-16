@@ -41,6 +41,11 @@ public class HeroController : MonoBehaviour
     public Image skill1;
     private bool estadoCooldown = false;
 
+    private float cooldown2 = 10f;
+    private float timeInicio2 = 0;
+    public Image skill2;
+    private bool estadoCooldown2 = false;
+
     private void Start()
     {
         mRigidBody = GetComponent<Rigidbody2D>();
@@ -48,6 +53,7 @@ public class HeroController : MonoBehaviour
         mSpriteRenderer = GetComponent<SpriteRenderer>();
         mFireballPoint = transform.Find("FireballPoint");
         skill1.fillAmount = 0;
+        skill2.fillAmount = 0;
         
     }
 
@@ -152,6 +158,20 @@ public class HeroController : MonoBehaviour
             if(skill1.fillAmount <= 0){
                 skill1.fillAmount = 0;
                 estadoCooldown = false;
+            }
+        }
+        if(Time.time > timeInicio2){
+            if(Input.GetKeyDown(KeyCode.Alpha2)){
+                timeInicio2 = Time.time + cooldown2;
+                estadoCooldown2 = true;
+                skill2.fillAmount = 1;
+            }
+        }
+        if(estadoCooldown2){
+            skill2.fillAmount -= 1 / cooldown2 * Time.deltaTime;
+            if(skill2.fillAmount <= 0){
+                skill2.fillAmount = 0;
+                estadoCooldown2 = false;
             }
         }
     }
