@@ -28,4 +28,9 @@ public class CombateJugador : MonoBehaviour
             GameOverJ.enabled = true;
         }
     }
+
+    public void CurarVida(float cura){
+        vida += cura;
+        barraDeVida.CambiarVidaActual(vida);
+    }
 }

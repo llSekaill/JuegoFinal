@@ -36,6 +36,9 @@ public class HeroController : MonoBehaviour
     public AudioSource fastS;
     public GameObject springIce;
 
+    public GameObject heroI;
+    public Vector3 moveI;
+
     private float cooldown = 5f;
     private float timeInicio = 0;
     public Image skill1;
@@ -162,6 +165,13 @@ public class HeroController : MonoBehaviour
         }
         if(Time.time > timeInicio2){
             if(Input.GetKeyDown(KeyCode.Alpha2)){
+                GetComponent<CombateJugador>().CurarVida(10);
+                //RectTransfrom heroIR = GetComponent<RectTransfrom>();
+                //heroI.heroIR.localPosition += Vector3.right;
+                //Vector3 pos = heroI.transform.position;
+                //pos.x = pos.x+750;
+                //heroI.transform.position = pos;
+                heroI.transform.Translate(moveI, Space.World);
                 timeInicio2 = Time.time + cooldown2;
                 estadoCooldown2 = true;
                 skill2.fillAmount = 1;
