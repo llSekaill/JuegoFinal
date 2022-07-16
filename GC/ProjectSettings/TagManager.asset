@@ -6,11 +6,12 @@ TagManager:
   tags:
   - Fireball
   - PJ
+  - PJF
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Action
   - Water
   - UI
   - 

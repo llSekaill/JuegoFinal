@@ -6,17 +6,27 @@ public class RangoEnemigo2D : MonoBehaviour
 {
     public Animator ani;
     public Enemigo2D enemigo;
+    public bool cerca;
+
+    void repetirCheck(){
+        
+        GetComponent<BoxCollider2D>().enabled = true;
+        GetComponent<BoxCollider2D>().enabled = false;
+        
+    }
 
     void OnTriggerEnter2D(Collider2D coll) {
-        if(coll.CompareTag("PJ")){
+        if(coll.CompareTag("PJF")){
+            
             ani.SetBool("walk", false);
             ani.SetBool("run", false);
             ani.SetBool("attack", true);
             enemigo.atacando = true;
-            GetComponent<BoxCollider2D>().enabled = false;
+            
+            
         }
     }
-    // Start is called before the first frame update
+    
     void Start()
     {
         
@@ -25,6 +35,7 @@ public class RangoEnemigo2D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //repetirCheck();
+        //Debug.Log(cerca);
     }
 }

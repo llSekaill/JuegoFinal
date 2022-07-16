@@ -18,17 +18,23 @@ public class CombateJugadorBoss : MonoBehaviour
         vidaBoss = maximoVidaBoss;
         barraDeVidaBoss.InicializarBarraDeVidaBoss(vidaBoss);
         
+        
     }
     
     public void TomarDañoBoss(float dañoBoss){
         vidaBoss -= dañoBoss;
         barraDeVidaBoss.CambiarVidaActualBoss(vidaBoss);
         if(vidaBoss<-0){
-            Destroy(gameObject);
+            Destroy(gameObject);    
             Debug.Log("RIP");
             Reiniciar.gameObject.SetActive(true);
             GameOver.enabled = true;
 
         }
+    }
+
+    void Update() {
+
+        
     }
 }

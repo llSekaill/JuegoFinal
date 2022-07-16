@@ -34,6 +34,12 @@ public class HeroController : MonoBehaviour
     int segCap = 0;
     bool estadoV = false;
     public AudioSource fastS;
+    public GameObject springIce;
+
+    private float cooldown = 5f;
+    private float timeInicio = 0;
+    public Image skill1;
+    private bool estadoCooldown = false;
 
     private void Start()
     {
@@ -41,6 +47,8 @@ public class HeroController : MonoBehaviour
         mAnimator = GetComponent<Animator>();
         mSpriteRenderer = GetComponent<SpriteRenderer>();
         mFireballPoint = transform.Find("FireballPoint");
+        skill1.fillAmount = 0;
+        
     }
 
     private void Update()
@@ -80,6 +88,7 @@ public class HeroController : MonoBehaviour
         bool isOnAir = IsOnAir();
         if (Input.GetButtonDown("Jump"))
         {   
+            springIce.GetComponent<SpriteRenderer>().enabled = false;
             if(!isOnAir){
                 Jump();
             }else{
@@ -89,12 +98,13 @@ public class HeroController : MonoBehaviour
                     mAnimator.SetBool("IsJumping2", true);
                     jumpS.Play();
                     dobleJump = false;
+                    //springIce.GetComponent<SpriteRenderer>().enabled = false;
                 }
             }
-            
-            
         }
-        
+        if(estadoV == true && !isOnAir ){
+            springIce.GetComponent<SpriteRenderer>().enabled = true;
+        }
         if (Input.GetButtonDown("Fire1"))
         {
             mAnimator.SetBool("IsAttack", true);
@@ -125,18 +135,31 @@ public class HeroController : MonoBehaviour
         }
     }
     private void KeyC(){
-        if(Input.GetKeyDown(KeyCode.Alpha1)){
-            moveSpeed = 10f;
-            segCap = number;
-            estadoV = true;
-            fastS.Play();
-            
+        if(Time.time > timeInicio){
+            if(Input.GetKeyDown(KeyCode.Alpha1)){
+                moveSpeed = 9f;
+                segCap = number;
+                estadoV = true;
+                fastS.Play();
+                springIce.GetComponent<SpriteRenderer>().enabled = true;
+                timeInicio = Time.time + cooldown;
+                estadoCooldown = true;
+                skill1.fillAmount = 1;
+            }
+        }
+        if(estadoCooldown){
+            skill1.fillAmount -= 1 / cooldown * Time.deltaTime;
+            if(skill1.fillAmount <= 0){
+                skill1.fillAmount = 0;
+                estadoCooldown = false;
+            }
         }
     }
     private void Move()
     {   
         if(estadoV == false){
-            moveSpeed = 5f;
+            moveSpeed = 6f;
+            springIce.GetComponent<SpriteRenderer>().enabled = false;
         }
         float targetSpeed = mMovement * moveSpeed;
         float speedDif = targetSpeed - mRigidBody.velocity.x;
@@ -151,7 +174,9 @@ public class HeroController : MonoBehaviour
 
     private void Jump()
     {
+        
         mRigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        springIce.GetComponent<SpriteRenderer>().enabled = false;
         jumpS.Play();
     }
 
@@ -166,7 +191,7 @@ public class HeroController : MonoBehaviour
         mAnimator.SetBool("IsJumping", !hit);
         if(hit) mAnimator.SetBool("IsJumping2", false);
 
-        /*Color rayColor;
+        Color rayColor;
         if (hit)
         {
             rayColor = Color.red;
@@ -174,8 +199,7 @@ public class HeroController : MonoBehaviour
         {
             rayColor = Color.blue;
         }
-        Debug.DrawRay(rayCastOrigin.position, Vector2.down * raycastDistance, rayColor);*/
-
+        Debug.DrawRay(rayCastOrigin.position, Vector2.down * raycastDistance, rayColor);
         return !hit;
         //return hit == null ? true : false;
         

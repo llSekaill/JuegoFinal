@@ -4,23 +4,14 @@ using UnityEngine;
 
 public class HitEnemigo2D : MonoBehaviour
 {   
-    
+    public GameObject padre;
     
     void OnTriggerEnter2D(Collider2D coll){
 
-        if(coll.CompareTag("PJ")){
-            coll.GetComponent<CombateJugador>().TomarDaño(10);
+        if(coll.CompareTag("PJF")){
+            padre.GetComponent<CombateJugador>().TomarDaño(10);
+            //Debug.Log("Golpeo");
         }
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }
