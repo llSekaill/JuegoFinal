@@ -36,8 +36,12 @@ public class HeroController : MonoBehaviour
     public AudioSource fastS;
     public GameObject springIce;
 
+    public GameObject targetHeroI;
+    public GameObject origenHeroI;
     public GameObject heroI;
     public Vector3 moveI;
+    private bool estadoHeroI = false;
+    int segCap2 = 0;
 
     private float cooldown = 5f;
     private float timeInicio = 0;
@@ -71,6 +75,24 @@ public class HeroController : MonoBehaviour
             number++;
         }
         KeyC();
+        if(estadoHeroI){
+            Vector3 a = heroI.transform.position;
+            Vector3 b = targetHeroI.transform.position;
+            //Debug.Log(a);
+            //Debug.Log(b);
+            heroI.transform.position = Vector3.Lerp(a,b,0.01f);
+        }else{
+            if(!estadoHeroI){
+                Vector3 c = heroI.transform.position;
+                Vector3 d = origenHeroI.transform.position;
+                heroI.transform.position = Vector3.Lerp(c,d,0.01f);
+            }
+        }
+        if(number-segCap2 == 3 && segCap2 !=0){
+            estadoHeroI = false;
+            segCap2 = 0;
+        }
+
         mAnimator.SetBool("estadoV", estadoV);
         if(number-segCap == 3 && segCap != 0){
             estadoV = false;
@@ -171,7 +193,9 @@ public class HeroController : MonoBehaviour
                 //Vector3 pos = heroI.transform.position;
                 //pos.x = pos.x+750;
                 //heroI.transform.position = pos;
-                heroI.transform.Translate(moveI, Space.World);
+                //heroI.transform.Translate(moveI* 10f * Time.deltaTime, Space.Self);
+                estadoHeroI = true;
+                segCap2 = number;
                 timeInicio2 = Time.time + cooldown2;
                 estadoCooldown2 = true;
                 skill2.fillAmount = 1;

@@ -126,14 +126,14 @@ public class Enemigo2D : MonoBehaviour
         if(hitF.collider != null){
             //Debug.DrawLine(rayAttack.position,hitF.point, Color.red);
             if(hitF.collider.tag == "PJ"){
-                Debug.Log("Heroe golepado");
+                //Debug.Log("Heroe golepado");
                 ani.SetBool("walk", false);
                 ani.SetBool("run", false);
                 ani.SetBool("attack", true);
                 //Aturnido(); 
                 // 5 seg corutina, funcion para detener, flag
             }else{
-                Debug.Log("Random golepado");
+                //Debug.Log("Random golepado");
                 Comportamientos();
             }
             //Debug.Log(hitF.collider.gameObject.name);
@@ -141,7 +141,7 @@ public class Enemigo2D : MonoBehaviour
             
         }else{
             //Debug.DrawLine(rayAttack.position,rayAttack.position + Vector3.right * direccionF, Color.blue);
-            Debug.Log("Vacio no hay nada");
+            //Debug.Log("Vacio no hay nada");
             Comportamientos();
         }
     }

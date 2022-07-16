@@ -61247,6 +61247,36 @@ Sprite:
   m_PhysicsShape: []
   m_Bones: []
   m_SpriteID: 
+--- !u!1 &318865775
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 318865776}
+  m_Layer: 0
+  m_Name: OrigenHeroI
+  m_TagString: PJF
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &318865776
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318865775}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1365, y: -3, z: 0}
+  m_LocalScale: {x: 0.9340702, y: 0.8187001, z: 1}
+  m_Children: []
+  m_Father: {fileID: 968665331}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &323863743
 GameObject:
   m_ObjectHideFlags: 0
@@ -65618,7 +65648,8 @@ RectTransform:
   - {fileID: 78165355}
   - {fileID: 1596810643}
   - {fileID: 1991730286}
-  - {fileID: 1354750928}
+  - {fileID: 1979326780}
+  - {fileID: 318865776}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -71086,8 +71117,10 @@ MonoBehaviour:
   attackS: {fileID: 2035310886}
   fastS: {fileID: 823968736}
   springIce: {fileID: 674820328}
+  targetHeroI: {fileID: 1979326779}
+  origenHeroI: {fileID: 318865775}
   heroI: {fileID: 1991730285}
-  moveI: {x: 0, y: 0, z: 0}
+  moveI: {x: -580, y: 0, z: 0}
   skill1: {fileID: 536273264}
   skill2: {fileID: 1714929179}
 --- !u!95 &1056137683
@@ -72082,41 +72115,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1313205572}
   m_CullTransparentMesh: 1
---- !u!1 &1354750927
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1354750928}
-  m_Layer: 5
-  m_Name: ImgenHero
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1354750928
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1354750927}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 8.6181, y: 8.6181, z: 8.6181}
-  m_Children: []
-  m_Father: {fileID: 968665331}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1350, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1368642717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86379,6 +86377,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1979326779
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1979326780}
+  m_Layer: 0
+  m_Name: TargetHeroI
+  m_TagString: PJF
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1979326780
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979326779}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -580, y: -3, z: 0}
+  m_LocalScale: {x: 0.9340702, y: 0.8187001, z: 1}
+  m_Children: []
+  m_Father: {fileID: 968665331}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1980707665
 GameObject:
   m_ObjectHideFlags: 0
@@ -86478,7 +86506,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1991730285}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -580, y: 0, z: 0}
+  m_LocalPosition: {x: -1365, y: 0, z: 0}
   m_LocalScale: {x: 0.9340702, y: 0.8187001, z: 1}
   m_Children:
   - {fileID: 1488762249}
