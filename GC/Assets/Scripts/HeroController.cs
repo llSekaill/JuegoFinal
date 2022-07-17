@@ -42,9 +42,6 @@ public class HeroController : MonoBehaviour
     public GameObject targetHeroI;
     public GameObject origenHeroI;
     public GameObject heroI;
-    public Vector3 moveI;
-    
-    
 
     private float cooldown = 5f;
     private float timeInicio = 0;
@@ -60,7 +57,7 @@ public class HeroController : MonoBehaviour
     private int segCap2 = 0;
     private bool estadoS2 = false;
 
-    private float cooldown3 = 10f;
+    private float cooldown3 = 20f;
     private float timeInicio3 = 0;
     public Image skill3;
     private bool estadoCooldown3 = false;
@@ -97,20 +94,30 @@ public class HeroController : MonoBehaviour
         }
         // Imagen grande del personaje y zoom de la camara con la habilidad 2
         if(estadoS2){
-            //ImagenAndZoom();
+            //ImagenAndZoom2();
+            //camareVirtual.GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize = 2.5f;
+            Vector3 a = heroI.transform.position;
+            Vector3 b = targetHeroI.transform.position;
+            heroI.transform.position = Vector3.Lerp(a,b,0.01f);
             mAnimator.SetBool("IsHeal", true);
         }else{
             if(!estadoS2){
-                //NoImagenAndZoom();
+                //NoImagenAndZoom2();
+                //camareVirtual.GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize = 6.5f;
+                Vector3 c = heroI.transform.position;
+                Vector3 d = origenHeroI.transform.position;
+                heroI.transform.position = Vector3.Lerp(c,d,0.01f);
                 mAnimator.SetBool("IsHeal", false);
             }
         }
-        if(number-segCap2 >= 3 && segCap2 !=0){
+        if(number-segCap2 == 3 && segCap2 !=0){
             estadoS2 = false;
             segCap2 = 0;
         }
         // Habilidad 3 cancelar
-        if(number-segCap3 >= 5 && segCap3 !=0){
+        Debug.Log(estadoS3);
+        if(number-segCap3 == 5 && segCap3 !=0){
+            
             estadoS3 = false;
             segCap3 = 0;
         }
@@ -127,7 +134,7 @@ public class HeroController : MonoBehaviour
 
         // Movimiento del personaje acelerado 
         mAnimator.SetBool("estadoV", estadoS1);
-        if(number-segCap >= 3 && segCap != 0){
+        if(number-segCap == 3 && segCap != 0){
             estadoS1 = false;
             segCap = 0;
         };
@@ -240,8 +247,6 @@ public class HeroController : MonoBehaviour
                 skill3.fillAmount = 1;
                 estadoS3 = true;
                 estadoCooldown3 = true;
-                //mAnimator.SetBool("IsIceBall", true);
-                //mAnimator.SetBool("IsIceBall", false);
             }
         }
         if(estadoCooldown3){
@@ -321,10 +326,10 @@ public class HeroController : MonoBehaviour
     }
     
     public void AttackIceBall(){
+        iceBallSound2.Play();
         GameObject objI =Instantiate(iceball, mIceballPoint);
         objI.transform.parent = null;
         Debug.Log("Entro");
-        iceBallSound2.Play();
     }
     public void SoundAttackIceBall(){
         iceBallSound.Play();
@@ -342,4 +347,5 @@ public class HeroController : MonoBehaviour
         Vector3 d = origenHeroI.transform.position;
         heroI.transform.position = Vector3.Lerp(c,d,0.01f);
     }
-}
+    
+}   
