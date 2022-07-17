@@ -97,16 +97,12 @@ public class HeroController : MonoBehaviour
         }
         // Imagen grande del personaje y zoom de la camara con la habilidad 2
         if(estadoS2){
-            Vector3 a = heroI.transform.position;
-            Vector3 b = targetHeroI.transform.position;
-            heroI.transform.position = Vector3.Lerp(a,b,0.01f);
-            camareVirtual.GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize = 2.5f;
+            //ImagenAndZoom();
+            mAnimator.SetBool("IsHeal", true);
         }else{
             if(!estadoS2){
-                Vector3 c = heroI.transform.position;
-                Vector3 d = origenHeroI.transform.position;
-                heroI.transform.position = Vector3.Lerp(c,d,0.01f);
-                camareVirtual.GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize = 6.5f;
+                //NoImagenAndZoom();
+                mAnimator.SetBool("IsHeal", false);
             }
         }
         if(number-segCap2 >= 3 && segCap2 !=0){
@@ -114,16 +110,16 @@ public class HeroController : MonoBehaviour
             segCap2 = 0;
         }
         // Habilidad 3 cancelar
-        if(number-segCap3 >= 5f && segCap3 !=0){
+        if(number-segCap3 >= 5 && segCap3 !=0){
             estadoS3 = false;
             segCap3 = 0;
         }
         if(estadoS3){
+            ImagenAndZoom();
             mAnimator.SetBool("IsIceBall", true);
-            //GameObject objI =Instantiate(iceball, mIceballPoint);
-            //objI.transform.parent = null;
         }else{
             if(!estadoS3){
+                NoImagenAndZoom();
                 mAnimator.SetBool("IsIceBall", false);
 
             }
@@ -333,5 +329,17 @@ public class HeroController : MonoBehaviour
     public void SoundAttackIceBall(){
         iceBallSound.Play();
 
+    }
+    public void ImagenAndZoom(){
+        camareVirtual.GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize = 2.5f;
+        Vector3 a = heroI.transform.position;
+        Vector3 b = targetHeroI.transform.position;
+        heroI.transform.position = Vector3.Lerp(a,b,0.01f);
+    }
+    public void NoImagenAndZoom(){
+        camareVirtual.GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize = 6.5f;
+        Vector3 c = heroI.transform.position;
+        Vector3 d = origenHeroI.transform.position;
+        heroI.transform.position = Vector3.Lerp(c,d,0.01f);
     }
 }
