@@ -35,8 +35,7 @@ public class HeroController : MonoBehaviour
     int number=0;
     float secondsCounter=0;
     float secondsToCount=1;
-    int segCap = 0;
-    bool estadoV = false;
+    
     public AudioSource fastS;
     public GameObject springIce;
 
@@ -44,18 +43,29 @@ public class HeroController : MonoBehaviour
     public GameObject origenHeroI;
     public GameObject heroI;
     public Vector3 moveI;
-    private bool estadoHeroI = false;
-    int segCap2 = 0;
+    
+    
 
     private float cooldown = 5f;
     private float timeInicio = 0;
     public Image skill1;
     private bool estadoCooldown = false;
+    private int segCap = 0;
+    private bool estadoS1 = false;
 
-    private float cooldown2 = 10f;
+    private float cooldown2 = 8f;
     private float timeInicio2 = 0;
     public Image skill2;
     private bool estadoCooldown2 = false;
+    private int segCap2 = 0;
+    private bool estadoS2 = false;
+
+    private float cooldown3 = 10f;
+    private float timeInicio3 = 0;
+    public Image skill3;
+    private bool estadoCooldown3 = false;
+    private int segCap3 = 0;
+    private bool estadoS3 = false;
 
     public GameObject camareVirtual;
 
@@ -68,6 +78,7 @@ public class HeroController : MonoBehaviour
         mIceballPoint = transform.Find("IceBallPoint");
         skill1.fillAmount = 0;
         skill2.fillAmount = 0;
+        skill3.fillAmount = 0;
         
     }
 
@@ -75,41 +86,56 @@ public class HeroController : MonoBehaviour
     {
         mMovement = Input.GetAxis("Horizontal");
         mAnimator.SetInteger("Move", mMovement == 0f ? 0 : 1);
+        KeyC();
         
         secondsCounter += Time.deltaTime;
         if (secondsCounter >= secondsToCount){
             secondsCounter=0;
             number++;
         }
-        KeyC();
-        if(estadoHeroI){
+        // Imagen grande del personaje y zoom de la camara con la habilidad 2
+        if(estadoS2){
             Vector3 a = heroI.transform.position;
             Vector3 b = targetHeroI.transform.position;
-            //Debug.Log(a);
-            //Debug.Log(b);
             heroI.transform.position = Vector3.Lerp(a,b,0.01f);
             camareVirtual.GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize = 2.5f;
         }else{
-            if(!estadoHeroI){
+            if(!estadoS2){
                 Vector3 c = heroI.transform.position;
                 Vector3 d = origenHeroI.transform.position;
                 heroI.transform.position = Vector3.Lerp(c,d,0.01f);
                 camareVirtual.GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize = 6.5f;
             }
         }
-        if(number-segCap2 == 3 && segCap2 !=0){
-            estadoHeroI = false;
+        if(number-segCap2 >= 3 && segCap2 !=0){
+            estadoS2 = false;
             segCap2 = 0;
         }
+        // Habilidad 3 cancelar
+        if(number-segCap3 >= 2.2f && segCap3 !=0){
+            estadoS3 = false;
+            segCap3 = 0;
+        }
+        if(estadoS3){
+            mAnimator.SetBool("IsIceBall", true);
+            //GameObject objI =Instantiate(iceball, mIceballPoint);
+            //objI.transform.parent = null;
+        }else{
+            if(!estadoS3){
+                mAnimator.SetBool("IsIceBall", false);
 
-        mAnimator.SetBool("estadoV", estadoV);
-        if(number-segCap == 3 && segCap != 0){
-            estadoV = false;
+            }
+        }
+
+        // Movimiento del personaje acelerado 
+        mAnimator.SetBool("estadoV", estadoS1);
+        if(number-segCap >= 3 && segCap != 0){
+            estadoS1 = false;
             segCap = 0;
         };
+
         if (mMovement < 0f)
         {
-            //mSpriteRenderer.flipX = true;
             transform.rotation = Quaternion.Euler(
                 0f,
                 180f,
@@ -117,14 +143,13 @@ public class HeroController : MonoBehaviour
             );
         } else if (mMovement > 0)
         {
-            //mSpriteRenderer.flipX = false;
             transform.rotation = Quaternion.Euler(
                 0f,
                 0f,
                 0f
             );
         }
-
+        // Para ver la animacion del doble salto
         bool isOnAir = IsOnAir();
         if (Input.GetButtonDown("Jump"))
         {   
@@ -138,11 +163,10 @@ public class HeroController : MonoBehaviour
                     mAnimator.SetBool("IsJumping2", true);
                     jumpS.Play();
                     dobleJump = false;
-                    //springIce.GetComponent<SpriteRenderer>().enabled = false;
                 }
             }
         }
-        if(estadoV == true && !isOnAir ){
+        if(estadoS1 == true && !isOnAir ){
             springIce.GetComponent<SpriteRenderer>().enabled = true;
         }
         if (Input.GetButtonDown("Fire1"))
@@ -179,10 +203,10 @@ public class HeroController : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Alpha1)){
                 moveSpeed = 9f;
                 segCap = number;
-                estadoV = true;
                 fastS.Play();
                 springIce.GetComponent<SpriteRenderer>().enabled = true;
                 timeInicio = Time.time + cooldown;
+                estadoS1 = true;
                 estadoCooldown = true;
                 skill1.fillAmount = 1;
             }
@@ -197,18 +221,11 @@ public class HeroController : MonoBehaviour
         if(Time.time > timeInicio2){
             if(Input.GetKeyDown(KeyCode.Alpha2)){
                 GetComponent<CombateJugador>().CurarVida(10);
-                //RectTransfrom heroIR = GetComponent<RectTransfrom>();
-                //heroI.heroIR.localPosition += Vector3.right;
-                //Vector3 pos = heroI.transform.position;
-                //pos.x = pos.x+750;
-                //heroI.transform.position = pos;
-                //heroI.transform.Translate(moveI* 10f * Time.deltaTime, Space.Self);
-                estadoHeroI = true;
                 segCap2 = number;
                 timeInicio2 = Time.time + cooldown2;
+                estadoS2 = true;
                 estadoCooldown2 = true;
                 skill2.fillAmount = 1;
-                //camareVirtual.GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize = 2.5f;
             }
         }
         if(estadoCooldown2){
@@ -218,14 +235,29 @@ public class HeroController : MonoBehaviour
                 estadoCooldown2 = false;
             }
         }
-        if(Input.GetKeyDown(KeyCode.Alpha3)){
-            GameObject objI =Instantiate(iceball, mIceballPoint);
-            objI.transform.parent = null;
+        if(Time.time > timeInicio3){
+            if(Input.GetKeyDown(KeyCode.Alpha3)){
+                segCap3 = number;
+                timeInicio3 = Time.time + cooldown3;
+                skill3.fillAmount = 1;
+                estadoS3 = true;
+                estadoCooldown3 = true;
+                //mAnimator.SetBool("IsIceBall", true);
+                //mAnimator.SetBool("IsIceBall", false);
+            }
         }
+        if(estadoCooldown3){
+            skill3.fillAmount -= 1 / cooldown3 * Time.deltaTime;
+            if(skill3.fillAmount <= 0){
+                skill3.fillAmount = 0;
+                estadoCooldown3 = false;
+            }
+        }
+        
     }
     private void Move()
     {   
-        if(estadoV == false){
+        if(estadoS1 == false){
             moveSpeed = 6f;
             springIce.GetComponent<SpriteRenderer>().enabled = false;
         }
@@ -288,5 +320,10 @@ public class HeroController : MonoBehaviour
             0f,
             0f
         );
+    }
+    
+    public void AttackIceBall(){
+        GameObject objI =Instantiate(iceball, mIceballPoint);
+        objI.transform.parent = null;
     }
 }
