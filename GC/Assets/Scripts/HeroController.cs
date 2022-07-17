@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-
+using Cinemachine;
 public class HeroController : MonoBehaviour
 {
     [Header("Movement")]
@@ -19,9 +19,13 @@ public class HeroController : MonoBehaviour
     public AudioSource jumpS; 
 
     [Header("Fire")]
-    public GameObject fireball; //prefab
+    public GameObject fireball;
     private Transform mFireballPoint;
     public AudioSource attackS;
+
+    [Header("Ice")]
+    public GameObject iceball;
+    private Transform mIceballPoint;
 
     private Rigidbody2D mRigidBody;
     private float mMovement;
@@ -53,12 +57,15 @@ public class HeroController : MonoBehaviour
     public Image skill2;
     private bool estadoCooldown2 = false;
 
+    public GameObject camareVirtual;
+
     private void Start()
     {
         mRigidBody = GetComponent<Rigidbody2D>();
         mAnimator = GetComponent<Animator>();
         mSpriteRenderer = GetComponent<SpriteRenderer>();
         mFireballPoint = transform.Find("FireballPoint");
+        mIceballPoint = transform.Find("IceBallPoint");
         skill1.fillAmount = 0;
         skill2.fillAmount = 0;
         
@@ -81,11 +88,13 @@ public class HeroController : MonoBehaviour
             //Debug.Log(a);
             //Debug.Log(b);
             heroI.transform.position = Vector3.Lerp(a,b,0.01f);
+            camareVirtual.GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize = 2.5f;
         }else{
             if(!estadoHeroI){
                 Vector3 c = heroI.transform.position;
                 Vector3 d = origenHeroI.transform.position;
                 heroI.transform.position = Vector3.Lerp(c,d,0.01f);
+                camareVirtual.GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize = 6.5f;
             }
         }
         if(number-segCap2 == 3 && segCap2 !=0){
@@ -199,6 +208,7 @@ public class HeroController : MonoBehaviour
                 timeInicio2 = Time.time + cooldown2;
                 estadoCooldown2 = true;
                 skill2.fillAmount = 1;
+                //camareVirtual.GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize = 2.5f;
             }
         }
         if(estadoCooldown2){
@@ -207,6 +217,10 @@ public class HeroController : MonoBehaviour
                 skill2.fillAmount = 0;
                 estadoCooldown2 = false;
             }
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha3)){
+            GameObject objI =Instantiate(iceball, mIceballPoint);
+            objI.transform.parent = null;
         }
     }
     private void Move()
