@@ -64260,67 +64260,6 @@ Sprite:
   m_PhysicsShape: []
   m_Bones: []
   m_SpriteID: 
---- !u!1001 &725605786
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1056137679}
-    m_Modifications:
-    - target: {fileID: 2591729220599233072, guid: 85634dccecf2cec40ba9055c73b22928, type: 3}
-      propertyPath: m_Name
-      value: IceBallSkill
-      objectReference: {fileID: 0}
-    - target: {fileID: 2591729220599233077, guid: 85634dccecf2cec40ba9055c73b22928, type: 3}
-      propertyPath: looping
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2591729220599233079, guid: 85634dccecf2cec40ba9055c73b22928, type: 3}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2591729220599233079, guid: 85634dccecf2cec40ba9055c73b22928, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2591729220599233079, guid: 85634dccecf2cec40ba9055c73b22928, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2591729220599233079, guid: 85634dccecf2cec40ba9055c73b22928, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2591729220599233079, guid: 85634dccecf2cec40ba9055c73b22928, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 2591729220599233079, guid: 85634dccecf2cec40ba9055c73b22928, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2591729220599233079, guid: 85634dccecf2cec40ba9055c73b22928, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 2591729220599233079, guid: 85634dccecf2cec40ba9055c73b22928, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2591729220599233079, guid: 85634dccecf2cec40ba9055c73b22928, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2591729220599233079, guid: 85634dccecf2cec40ba9055c73b22928, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 270
-      objectReference: {fileID: 0}
-    - target: {fileID: 2591729220599233079, guid: 85634dccecf2cec40ba9055c73b22928, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 85634dccecf2cec40ba9055c73b22928, type: 3}
 --- !u!213 &774647811
 Sprite:
   m_ObjectHideFlags: 0
@@ -71144,7 +71083,6 @@ Transform:
   - {fileID: 462977000}
   - {fileID: 823968735}
   - {fileID: 842870348}
-  - {fileID: 1273786943}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -72029,11 +71967,6 @@ Transform:
   m_Father: {fileID: 1227570115}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1273786943 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2591729220599233079, guid: 85634dccecf2cec40ba9055c73b22928, type: 3}
-  m_PrefabInstance: {fileID: 725605786}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1313205572
 GameObject:
   m_ObjectHideFlags: 0
