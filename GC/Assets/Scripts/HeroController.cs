@@ -68,6 +68,8 @@ public class HeroController : MonoBehaviour
     private bool estadoS3 = false;
 
     public GameObject camareVirtual;
+    public AudioSource iceBallSound;
+    public AudioSource iceBallSound2;
 
     private void Start()
     {
@@ -112,7 +114,7 @@ public class HeroController : MonoBehaviour
             segCap2 = 0;
         }
         // Habilidad 3 cancelar
-        if(number-segCap3 >= 2.2f && segCap3 !=0){
+        if(number-segCap3 >= 5f && segCap3 !=0){
             estadoS3 = false;
             segCap3 = 0;
         }
@@ -325,5 +327,11 @@ public class HeroController : MonoBehaviour
     public void AttackIceBall(){
         GameObject objI =Instantiate(iceball, mIceballPoint);
         objI.transform.parent = null;
+        Debug.Log("Entro");
+        iceBallSound2.Play();
+    }
+    public void SoundAttackIceBall(){
+        iceBallSound.Play();
+
     }
 }
