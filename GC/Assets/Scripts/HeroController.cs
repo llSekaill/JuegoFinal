@@ -4,6 +4,9 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using Cinemachine;
+
+//using UnityEngine.SceneManagement;
+
 public class HeroController : MonoBehaviour
 {
     [Header("Movement")]
@@ -67,6 +70,8 @@ public class HeroController : MonoBehaviour
     public GameObject camareVirtual;
     public AudioSource iceBallSound;
     public AudioSource iceBallSound2;
+
+    private Vector3 respawn;
 
     private void Start()
     {
@@ -347,5 +352,22 @@ public class HeroController : MonoBehaviour
         Vector3 d = origenHeroI.transform.position;
         heroI.transform.position = Vector3.Lerp(c,d,0.01f);
     }
-    
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Espinas")
+        {
+            transform.position = respawn;
+        }
+        else if (collision.tag == "CheckPoint")
+        {
+            respawn = transform.position;
+
+        }
+        /*else if (collision.tag == "NextLevel")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }*/
+    }
+
 }   

@@ -8,6 +8,10 @@ TagManager:
   - PJ
   - PJF
   - Iceball
+  - OnewayPlatform
+  - Espinas
+  - NextLevel
+  - CheckPoint
   layers:
   - Default
   - TransparentFX
@@ -15,7 +19,7 @@ TagManager:
   - Action
   - Water
   - UI
-  - 
+  - Ground
   - 
   - 
   - 
@@ -42,12 +46,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
-  - name: Background
+  - name: Fondo
     uniqueID: 26110419
     locked: 0
-  - name: Foreground
+  - name: Elementos a mitad
     uniqueID: 3185716367
+    locked: 0
+  - name: Resaltantes
+    uniqueID: 1192850295
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
