@@ -30,7 +30,7 @@ public class Movimiento : MonoBehaviour
         Player = GetComponent<Rigidbody2D>();
         playeranimation = GetComponent<Animator>();
         respawn = transform.position;
-        caps = gameObject.GetComponent<CapsuleCollider2D>();
+        caps = GetComponent<CapsuleCollider2D>();
     }
 
     // Update is called once per frame
@@ -66,7 +66,10 @@ public class Movimiento : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Espinas")
+        
+        Debug.Log(collision.tag);
+        
+        /*if(collision.tag == "OnewayPlatform")
         {
             Debug.Log("si");
             transform.position = respawn;
@@ -82,17 +85,18 @@ public class Movimiento : MonoBehaviour
         else if(collision.tag == "Plataforma" && Input.GetKey(KeyCode.S))
         {
             caps.enabled = false;
-            StartCoroutine(Espera());
+            
+            //StartCoroutine(Espera());
         }
         else if (collision.tag == "Plataforma")
         {
             Debug.Log("si");
-        }
-        IEnumerator Espera()
+        }*/
+        /*IEnumerator Espera()
         {
             yield return new WaitForSeconds(0.9f);
             caps.enabled = true;
-        }
+        }*/
         
     }
 

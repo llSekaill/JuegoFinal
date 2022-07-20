@@ -5,7 +5,7 @@ using System.Collections;
 using UnityEngine.UI;
 using Cinemachine;
 
-//using UnityEngine.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class HeroController : MonoBehaviour
 {
@@ -126,7 +126,7 @@ public class HeroController : MonoBehaviour
             segCap2 = 0;
         }
         // Habilidad 3 cancelar
-        Debug.Log(estadoS3);
+        //Debug.Log(estadoS3);
         if(number-segCap3 == 5 && segCap3 !=0){
             
             estadoS3 = false;
@@ -355,7 +355,7 @@ public class HeroController : MonoBehaviour
         heroI.transform.position = Vector3.Lerp(a,b,0.01f);
     }
     public void NoImagenAndZoom(){
-        camareVirtual.GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize = 6.5f;
+        camareVirtual.GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize = 7.1f;
         Vector3 c = heroI.transform.position;
         Vector3 d = origenHeroI.transform.position;
         heroI.transform.position = Vector3.Lerp(c,d,0.01f);
@@ -372,10 +372,10 @@ public class HeroController : MonoBehaviour
             respawn = transform.position;
 
         }
-        /*else if (collision.tag == "NextLevel")
+        else if (collision.tag == "NextLevel")
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }*/
+        }
     }
 
     public void checkEffectIceBallTrue(){

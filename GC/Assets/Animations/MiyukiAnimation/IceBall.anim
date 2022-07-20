@@ -148,8 +148,8 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.1
-    functionName: checkEffectIceBallFalse
+  - time: 2.4166667
+    functionName: checkEffectIceBallTrue
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -162,8 +162,8 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2.5
-    functionName: checkEffectIceBallTrue
+  - time: 2.8166666
+    functionName: checkEffectIceBallFalse
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

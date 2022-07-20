@@ -167,5 +167,9 @@ public class Enemigo2D : MonoBehaviour
         {
             GetComponent<CombateJugadorBoss>().TomarDañoBoss(5);
         }
+        if (collision.gameObject.CompareTag("Iceball"))
+        {
+            GetComponent<CombateJugadorBoss>().TomarDañoBossIceBall(20);
+        }
     }
 }
