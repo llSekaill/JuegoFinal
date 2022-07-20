@@ -70,6 +70,9 @@ public class HeroController : MonoBehaviour
     public GameObject camareVirtual;
     public AudioSource iceBallSound;
     public AudioSource iceBallSound2;
+    public AudioSource soundHeal;
+    public  GameObject effectHeal;
+    public GameObject effectIceBall;
 
     private Vector3 respawn;
 
@@ -105,6 +108,8 @@ public class HeroController : MonoBehaviour
             Vector3 b = targetHeroI.transform.position;
             heroI.transform.position = Vector3.Lerp(a,b,0.01f);
             mAnimator.SetBool("IsHeal", true);
+            effectHeal.SetActive(true);
+            
         }else{
             if(!estadoS2){
                 //NoImagenAndZoom2();
@@ -113,6 +118,7 @@ public class HeroController : MonoBehaviour
                 Vector3 d = origenHeroI.transform.position;
                 heroI.transform.position = Vector3.Lerp(c,d,0.01f);
                 mAnimator.SetBool("IsHeal", false);
+                effectHeal.SetActive(false);
             }
         }
         if(number-segCap2 == 3 && segCap2 !=0){
@@ -129,6 +135,7 @@ public class HeroController : MonoBehaviour
         if(estadoS3){
             ImagenAndZoom();
             mAnimator.SetBool("IsIceBall", true);
+            
         }else{
             if(!estadoS3){
                 NoImagenAndZoom();
@@ -235,6 +242,7 @@ public class HeroController : MonoBehaviour
                 timeInicio2 = Time.time + cooldown2;
                 estadoS2 = true;
                 estadoCooldown2 = true;
+                soundHeal.Play();
                 skill2.fillAmount = 1;
             }
         }
@@ -368,6 +376,13 @@ public class HeroController : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }*/
+    }
+
+    public void checkEffectIceBallTrue(){
+        effectIceBall.SetActive(true);
+    }
+    public void checkEffectIceBallFalse(){
+        effectIceBall.SetActive(false);
     }
 
 }   
