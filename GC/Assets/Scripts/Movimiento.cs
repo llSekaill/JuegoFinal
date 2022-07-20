@@ -76,6 +76,16 @@ public class Movimiento : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
+        else if(collision.tag == "OnewayPlatform" && Input.GetKey(KeyCode.S))
+        {
+            GetComponent<CapsuleCollider2D>().enabled = false;
+            StartCoroutine(Espera());
+        }
+        IEnumerator Espera()
+        {
+            yield return new WaitForSeconds(0.9f);
+            GetComponent<CapsuleCollider2D>().enabled = true;
+        }
     }
 
 }
