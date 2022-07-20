@@ -15032,6 +15032,7 @@ MonoBehaviour:
   camareVirtual: {fileID: 904689505}
   iceBallSound: {fileID: 372672586}
   iceBallSound2: {fileID: 1155215851}
+  soundHeal: {fileID: 0}
   effectHeal: {fileID: 787520408}
   effectIceBall: {fileID: 471128264}
 --- !u!95 &1056137683
@@ -29313,6 +29314,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5019837943596261776, guid: 4c08fe6551339154e96bdbc1f9549fd7, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e85a9b69103d9044081e74074c9e470b, type: 2}
     - target: {fileID: 5019837943596261777, guid: 4c08fe6551339154e96bdbc1f9549fd7, type: 3}
       propertyPath: looping
       value: 0
