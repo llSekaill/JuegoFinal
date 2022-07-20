@@ -19,6 +19,7 @@ public class Movimiento : MonoBehaviour
     private Animator playeranimation;
 
     private Vector3 respawn;
+    private CapsuleCollider2D caps;
     //public GameObject Espina1;
     //public GameObject Espina2;
 
@@ -29,6 +30,7 @@ public class Movimiento : MonoBehaviour
         Player = GetComponent<Rigidbody2D>();
         playeranimation = GetComponent<Animator>();
         respawn = transform.position;
+        caps = gameObject.GetComponent<CapsuleCollider2D>();
     }
 
     // Update is called once per frame
@@ -66,6 +68,7 @@ public class Movimiento : MonoBehaviour
     {
         if(collision.tag == "Espinas")
         {
+            Debug.Log("si");
             transform.position = respawn;
         }
         else if(collision.tag == "CheckPoint")
@@ -76,16 +79,21 @@ public class Movimiento : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
-        else if(collision.tag == "OnewayPlatform" && Input.GetKey(KeyCode.S))
+        else if(collision.tag == "Plataforma" && Input.GetKey(KeyCode.S))
         {
-            GetComponent<CapsuleCollider2D>().enabled = false;
+            caps.enabled = false;
             StartCoroutine(Espera());
+        }
+        else if (collision.tag == "Plataforma")
+        {
+            Debug.Log("si");
         }
         IEnumerator Espera()
         {
             yield return new WaitForSeconds(0.9f);
-            GetComponent<CapsuleCollider2D>().enabled = true;
+            caps.enabled = true;
         }
+        
     }
 
 }

@@ -12,6 +12,7 @@ TagManager:
   - Espinas
   - NextLevel
   - CheckPoint
+  - Plataforma
   layers:
   - Default
   - TransparentFX
