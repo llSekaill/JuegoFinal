@@ -66,6 +66,7 @@ public class HeroController : MonoBehaviour
     private bool estadoCooldown3 = false;
     private int segCap3 = 0;
     private bool estadoS3 = false;
+    private CapsuleCollider2D caps;
 
     public GameObject camareVirtual;
     public AudioSource iceBallSound;
@@ -86,6 +87,7 @@ public class HeroController : MonoBehaviour
         skill1.fillAmount = 0;
         skill2.fillAmount = 0;
         skill3.fillAmount = 0;
+        caps = gameObject.GetComponent<CapsuleCollider2D>();
         
     }
 
@@ -306,21 +308,38 @@ public class HeroController : MonoBehaviour
         );
         mAnimator.SetBool("IsJumping", !hit);
         if(hit) mAnimator.SetBool("IsJumping2", false);
+       
+        if (hit.collider != null)
+        {
+            //Debug.Log("Colision");
+            if (hit.collider.tag == "Plataforma" && Input.GetKeyDown(KeyCode.S))
+            {
+                Debug.Log("oneway");
+                caps.enabled = false;
 
+                StartCoroutine(Espera());
+            }
+        }
         Color rayColor;
         if (hit)
         {
             rayColor = Color.red;
-        }else
+        }
+        else 
         {
             rayColor = Color.blue;
         }
         Debug.DrawRay(rayCastOrigin.position, Vector2.down * raycastDistance, rayColor);
         return !hit;
         //return hit == null ? true : false;
-        
-    }
-    private void Fire()
+        IEnumerator Espera()
+        {
+            yield return new WaitForSeconds(0.4f);
+            caps.enabled = true;
+        }
+
+        }
+        private void Fire()
     {
         mFireballPoint.GetComponent<ParticleSystem>().Play(); // ejecutamos PS
         GameObject obj = Instantiate(fireball, mFireballPoint);
